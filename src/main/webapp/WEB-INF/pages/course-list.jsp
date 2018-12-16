@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <html>
 <head>
@@ -10,15 +10,12 @@
 
 <body>
 <security:authorize access="isAuthenticated()">
-    authenticated as <security:authentication property="principal.username" />
+    <h1>Merhaba <security:authentication property="principal.username"/></h1>
 </security:authorize>
 
-<h1>merhaba  ${person.name}</h1>
-
-    <c:forEach items="${person.messages}" var="message">
-        ${message.subject} <br/>
-        ${message.content}
-    </c:forEach>
+<c:forEach items="${courses}" var="course">
+    ${course.name} <br/>
+</c:forEach>
 </body>
 
 </html>

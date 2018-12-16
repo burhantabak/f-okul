@@ -20,8 +20,8 @@ public class CourseController {
     private CourseRepository courseRepository;
 
     @RequestMapping("/add")
-    public String addPerson(Model model) {
-        model.addAttribute("person", new Course());
+    public String addCourse(Model model) {
+        model.addAttribute("course", new Course());
         return "course-add";
     }
 
@@ -33,8 +33,8 @@ public class CourseController {
 
     @RequestMapping("/list")
     public String list(Model model) {
-        Iterable<Course> peoples = courseRepository.findAll();
-        model.addAttribute("courses", peoples);
+        Iterable<Course> courses = courseRepository.findAll();
+        model.addAttribute("courses", courses);
         return "course-list";
     }
 }
