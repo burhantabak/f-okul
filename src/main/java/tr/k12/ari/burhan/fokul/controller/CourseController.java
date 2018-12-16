@@ -22,7 +22,7 @@ public class CourseController {
     @RequestMapping("/add")
     public String addPerson(Model model) {
         model.addAttribute("person", new Course());
-        return "add";
+        return "course-add";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -35,26 +35,6 @@ public class CourseController {
     public String list(Model model) {
         Iterable<Course> peoples = courseRepository.findAll();
         model.addAttribute("courses", peoples);
-        return "courseList";
-    }
-
-    @RequestMapping("/edit")
-    public String edit(@RequestParam("id") Long id, Model model) {
-        Course course = courseRepository.findOne(id);
-        model.addAttribute("course", course);
-        return "add";
-    }
-
-    @RequestMapping("/messages")
-    public String showMessages(Long courseId, Model model) {
-        model.addAttribute("person", courseRepository.findOne(courseId));
-        return "message_list";
-    }
-
-    @RequestMapping("/search")
-    public String search(String name, Model model) {
-        Iterable<Course> peoples = courseRepository.findByNameUsingJPQL(name);
-        model.addAttribute("peoples", peoples);
-        return "personList";
+        return "course-list";
     }
 }
