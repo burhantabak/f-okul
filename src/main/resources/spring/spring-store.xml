@@ -29,6 +29,9 @@
         <property name="jpaPropertyMap" ref="jpaPropertyMap"/>
     </bean>
 
+    <bean id="webexpressionHandler"
+          class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+
     <util:map id="jpaPropertyMap">
         <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
         <entry key="hibernate.hbm2ddl.auto" value="update"/>
