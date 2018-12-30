@@ -1,9 +1,6 @@
 package tr.k12.ari.burhan.fokul.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,11 +16,11 @@ public class Grade {
     private double value;
 
     @ManyToOne
-    @JoinColumn(name="COURSE_ID", nullable=false)
+    @JoinColumn(name = "COURSE_ID", nullable = false)
     private Course course;
 
     @ManyToOne
-    @JoinColumn(name="STUDENT_ID", nullable=false)
+    @JoinColumn(name = "STUDENT_ID", nullable = false)
     private Student student;
 
     public Long getId() {

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import tr.k12.ari.burhan.fokul.model.Course;
-import tr.k12.ari.burhan.fokul.model.Student;
 import tr.k12.ari.burhan.fokul.repositories.CourseRepository;
 
 import javax.validation.Valid;

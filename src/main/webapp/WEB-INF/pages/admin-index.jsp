@@ -37,7 +37,8 @@
 <table>
     <c:forEach items="${students}" var="std">
         <tr>
-            <td>${std.name}</td><td><a href = "../grade/list/${std.id}">Not Ekle</a></td>
+            <td>${std.name}</td>
+            <td><a href="../grade/list/${std.id}">Not Ekle</a></td>
         </tr>
     </c:forEach>
 </table>

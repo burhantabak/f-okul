@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import tr.k12.ari.burhan.fokul.model.Grade;
 import tr.k12.ari.burhan.fokul.model.GradeHolder;
 import tr.k12.ari.burhan.fokul.model.Student;
@@ -31,8 +30,8 @@ public class GradesController {
     @Autowired
     private GradeRepository gradeRepository;
 
-    @RequestMapping(value="/list/{studentId}")
-    public String listGrades(@PathVariable long studentId, Model model){
+    @RequestMapping(value = "/list/{studentId}")
+    public String listGrades(@PathVariable long studentId, Model model) {
         Student student = studentRepository.findOne(studentId);
         model.addAttribute("student", student);
 
@@ -46,13 +45,12 @@ public class GradesController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("grade") GradeHolder gradeHolder,
-                         BindingResult result, ModelMap model) {
+                       BindingResult result, ModelMap model) {
         Grade grade = gradeHolder.getGrade();
         grade.setCourse(courseRepository.findOne(gradeHolder.getCourse()));
         Student student = studentRepository.findOne(gradeHolder.getStudent());
         grade.setStudent(student);
         gradeRepository.save(grade);
-        return "redirect:/grade/list/"+student.getId();
+        return "redirect:/grade/list/" + student.getId();
     }
-
 }
