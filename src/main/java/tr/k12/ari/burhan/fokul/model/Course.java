@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Course {
@@ -15,6 +16,9 @@ public class Course {
 
     @NotEmpty
     private String name;
+
+    @NotNull
+    private int coefficient;
 
     public Long getId() {
         return id;
@@ -32,10 +36,16 @@ public class Course {
         this.name = name;
     }
 
+    public int getCoefficient() {
+        return coefficient;
+    }
+
+    public void setCoefficient(int coefficient) {
+        this.coefficient = coefficient;
+    }
+
     @Override
     public String toString() {
-        return "Person{" + "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

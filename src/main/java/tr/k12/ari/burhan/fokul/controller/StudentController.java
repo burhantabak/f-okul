@@ -21,7 +21,7 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String submit(@Valid @ModelAttribute("student")Student student,
+    public String submit(@Valid @ModelAttribute("student") Student student,
                          BindingResult result, ModelMap model) {
 //        if (result.hasErrors()) {
 //            return "error";

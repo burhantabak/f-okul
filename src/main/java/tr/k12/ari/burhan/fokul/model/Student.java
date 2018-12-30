@@ -3,9 +3,13 @@ package tr.k12.ari.burhan.fokul.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -18,6 +22,9 @@ public class Student {
 
     @NotEmpty
     private String username;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "student")
+    private List<Grade> grades = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -41,6 +48,14 @@ public class Student {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
     @Override

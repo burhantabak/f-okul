@@ -3,9 +3,12 @@ package tr.k12.ari.burhan.fokul.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Grade {
@@ -13,8 +16,15 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
-    private String name;
+    private double value;
+
+    @ManyToOne
+    @JoinColumn(name="COURSE_ID", nullable=false)
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name="STUDENT_ID", nullable=false)
+    private Student student;
 
     public Long getId() {
         return id;
@@ -24,18 +34,27 @@ public class Grade {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public double getValue() {
+        return value;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setValue(double value) {
+        this.value = value;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" + "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

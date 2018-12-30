@@ -13,6 +13,7 @@
 <security:authorize access="isAuthenticated()">
     <h1>Merhaba <security:authentication property="principal.username"/></h1>
 </security:authorize>
+<h1>Öğrenciler</h1>
 <h2>Öğrenci Ekle</h2>
 <form:form method="POST"
            action="../student/add" modelAttribute="student">
@@ -34,9 +35,39 @@
     Öğrenci Listesi
 </h2>
 <table>
-<c:forEach items="${students}" var="student">
-    <tr><td>${student.name}</td></tr>
-</c:forEach>
+    <c:forEach items="${students}" var="std">
+        <tr>
+            <td>${std.name}</td><td><a href = "../grade/list/${std.id}">Not Ekle</a></td>
+        </tr>
+    </c:forEach>
+</table>
+<h1>Dersler</h1>
+<h2>Ders Ekle</h2>
+<form:form method="POST"
+           action="../course/add" modelAttribute="course">
+    <table>
+        <tr>
+            <td><form:label path="name">İsim</form:label></td>
+            <td><form:input path="name"/></td>
+        </tr>
+        <tr>
+            <td><form:label path="coefficient">Katsayı</form:label></td>
+            <td><form:input path="coefficient"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Dersi Kaydet"/></td>
+        </tr>
+    </table>
+</form:form>
+<h2>
+    Ders Listesi
+</h2>
+<table>
+    <c:forEach items="${courses}" var="course">
+        <tr>
+            <td>${course.name}</td>
+        </tr>
+    </c:forEach>
 </table>
 </body>
 

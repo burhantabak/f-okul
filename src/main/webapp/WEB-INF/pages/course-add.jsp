@@ -17,22 +17,26 @@
         <tr>
             <td><form:label path="name"><spring:message code="page.add.name"/></form:label></td>
             <td><form:input path="name"/></td>
-            <td><form:errors path="name" cssClass="required"><spring:message code="page.add.name.required"/></form:errors></td>
+            <td><form:errors path="name" cssClass="required"><spring:message
+                    code="page.add.name.required"/></form:errors></td>
         </tr>
         <tr>
             <td><form:label path="surname"><spring:message code="page.add.surname"/></form:label></td>
             <td><form:input path="surname"/>
-            <td><form:errors path="surname" cssClass="required"><spring:message code="page.add.surname.required"/></form:errors></td>
+            <td><form:errors path="surname" cssClass="required"><spring:message
+                    code="page.add.surname.required"/></form:errors></td>
         </tr>
         <tr>
             <td><form:label path="email"><spring:message code="page.add.email"/></form:label></td>
             <td><form:input path="email"/>
-            <td><form:errors path="email" cssClass="required"><spring:message code="page.add.email.required"/></form:errors></td>
+            <td><form:errors path="email" cssClass="required"><spring:message
+                    code="page.add.email.required"/></form:errors></td>
         </tr>
         <tr>
             <td><form:label path="discount"><spring:message code="page.add.discount"/></form:label></td>
             <td><form:input path="discount"/>
-            <td><form:errors path="discount" cssClass="required"><spring:message code="page.add.discount.required"/></form:errors></td>
+            <td><form:errors path="discount" cssClass="required"><spring:message
+                    code="page.add.discount.required"/></form:errors></td>
         </tr>
         <tr>
             <td><form:label path="team.id"><spring:message code="page.add.team"/></form:label></td>
