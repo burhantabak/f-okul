@@ -62,44 +62,59 @@ public class StudentController {
 
     private List<String> analyzeGrades(Student student) {
         List<Grade> grades = student.getGrades();
-        Double min = null;
-        Double max = null;
-        Grade minG = null;
-        Grade maxG = null;
+        List<String> messages = new ArrayList<>();
+        analyzeMinGrade(messages, grades);
+        analyzeMaxGrade(grades, messages);
+        specialGradeAnalysis(grades, messages);
+
+        return messages;
+    }
+
+    private void specialGradeAnalysis(List<Grade> grades, List<String> messages) {
         Double f = null;
         Grade maxF = null;
+        for (Grade g : grades) {
+            if (maxF == null || specialWeightFunction(g) > f) {
+                maxF = g;
+                f = specialWeightFunction(g);
+            }
+        }
+        if (maxF != null) {
+            messages.add(String.format("Ağırlık analizine göre %s dersine çalıştığında en yüksek faydayı sağlayabilirsin. ", maxF.getCourse().getName()));
+        }
+    }
+
+    private double specialWeightFunction(Grade g) {
+        double v = g.getValue();
+        int k = g.getCourse().getCoefficient();
+        return (100 - v) * k;
+    }
+
+    private void analyzeMaxGrade(List<Grade> grades, List<String> messages) {
+        Double max = null;
+        Grade maxG = null;
+        for (Grade g : grades) {
+            if (max == null || g.getValue() > max) {
+                max = g.getValue();
+                maxG = g;
+            }
+        }
+        if (maxG != null) {
+            messages.add(String.format("En yüksek notu %s dersinden %.0f olarak almışsın. Tebrikler. ", maxG.getCourse().getName(), maxG.getValue()));
+        }
+    }
+
+    private void analyzeMinGrade(List<String> messages, List<Grade> grades) {
+        Double min = null;
+        Grade minG = null;
         for (Grade g : grades) {
             if (min == null || g.getValue() < min) {
                 min = g.getValue();
                 minG = g;
             }
-            if (max == null || g.getValue() > max) {
-                max = g.getValue();
-                maxG = g;
-            }
-            if (maxF == null || fFunction(g) > f) {
-                maxF = g;
-                f = fFunction(g);
-            }
         }
-        List<String> messages = new ArrayList<>();
         if (minG != null && min < 100) {
             messages.add(String.format("En düşük notu %s dersinden %.0f olarak almışsın. Bu derse daha çok eğilebilirsin. ", minG.getCourse().getName(), minG.getValue()));
         }
-
-        if (maxG != null) {
-            messages.add(String.format("En yüksek notu %s dersinden %.0f olarak almışsın. Tebrikler. ", maxG.getCourse().getName(), maxG.getValue()));
-        }
-
-        if (maxF != null) {
-            messages.add(String.format("Ağırlık analizine göre %s dersine çalıştığında en yüksek faydayı sağlayabilirsin. ", maxG.getCourse().getName()));
-        }
-        return messages;
-    }
-
-    private double fFunction(Grade g) {
-        double v = g.getValue();
-        int k = g.getCourse().getCoefficient();
-        return (100 - v) * k;
     }
 }
